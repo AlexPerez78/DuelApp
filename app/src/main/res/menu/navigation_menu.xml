@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/nav_account"
+        android:icon="@mipmap/ic_people_black_24dp"
+        android:title="My Account"/>
+
+    <item android:id="@+id/nav_banlist"
+        android:icon="@mipmap/ic_featured_play_list_black_24dp"
+        android:title="BanList"/>
+
+    <item android:id="@+id/nav_tournament"
+        android:icon="@mipmap/ic_videogame_asset_black_24dp"
+        android:title="Tournament"/>
+
+    <item android:id="@+id/nav_settings"
+        android:icon="@mipmap/ic_settings_black_24dp"
+        android:title="Settings"/>
+
+</menu>
