@@ -2,4 +2,5 @@
     <string name="app_name">DuelApp</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
+    <string name="account_name">MyAccount</string>
 </resources>
