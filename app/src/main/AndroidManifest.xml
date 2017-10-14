@@ -16,7 +16,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".MyAccount"
-            android:label="@string/account_name"> </activity>
+            android:label="@string/account_name"
+            android:theme="@style/NoBarTheme"> </activity>
     </application>
 
 </manifest>

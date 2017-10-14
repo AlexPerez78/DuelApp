@@ -182,6 +182,7 @@
         </LinearLayout>
     </LinearLayout>
     <Button
+        android:id="@+id/homeButton"
         android:textColor="#FFF"
         android:background="@drawable/buttonstylegradiant"
         android:layout_marginTop="20dp"

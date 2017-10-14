@@ -1,23 +1,31 @@
 package com.example.alexperez.duelapp;
 
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.design.widget.NavigationView;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.MenuItem;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 public class MyAccount extends AppCompatActivity {
 
-    private DrawerLayout mDrawerLayout;
-    private ActionBarDrawerToggle mToggle;
+    private Button home_Button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_account);
+
+        home_Button = (Button)findViewById(R.id.homeButton);
+
+        home_Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent homeActivity = new Intent(getApplicationContext(),MainActivity.class);
+                startActivity(homeActivity);
+                Toast.makeText(view.getContext(), "Home", Toast.LENGTH_LONG).show();
+            }
+        });
 
 
     }
