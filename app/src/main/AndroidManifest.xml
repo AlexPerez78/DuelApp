@@ -15,9 +15,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MyAccount"
+        <activity
+            android:name=".MyAccount"
             android:label="@string/account_name"
-            android:theme="@style/NoBarTheme"> </activity>
+            android:theme="@style/NoBarTheme"></activity>
+        <activity android:name=".BanList"></activity>
     </application>
 
 </manifest>

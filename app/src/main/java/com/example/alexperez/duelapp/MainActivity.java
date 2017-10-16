@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
                             break;
 
                         case(R.id.nav_banlist):
-                            Intent banlistActivity = new Intent(getApplicationContext(),MainActivity.class);
+                            Intent banlistActivity = new Intent(getApplicationContext(),BanList.class);
                             startActivity(banlistActivity);
                             break;
 
