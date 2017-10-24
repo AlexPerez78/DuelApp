@@ -7,10 +7,15 @@ package com.example.alexperez.duelapp;
 public class ListItem {
     private String head;
     private String desc;
+    private String cardType;
+    private String userFormat;
 
-    public ListItem(String head, String desc) {
+    public ListItem(String cardType, String head, String desc, String userFormat) {
+        this.cardType = cardType;
         this.head = head;
         this.desc = desc;
+        this.userFormat = userFormat;
+
     }
 
     public String getHead() {
@@ -18,6 +23,15 @@ public class ListItem {
     }
 
     public String getDesc() {
+
         return desc;
+    }
+
+    public String getCardType() {
+        return cardType;
+    }
+
+    public String getUserFormat() {
+        return userFormat;
     }
 }

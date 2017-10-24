@@ -5,7 +5,7 @@
     android:layout_height="wrap_content">
 
     <android.support.v7.widget.CardView
-        android:layout_margin="8dp"
+        android:layout_margin="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -13,12 +13,14 @@
             android:padding="16dp"
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:id="@+id/banlist_layout">
             <!--android:background="#ADD8E6" -->
             <!--<ImageView-->
                 <!--android:layout_gravity="left"-->
                 <!--android:layout_width="match_parent"-->
                 <!--android:layout_height="wrap_content" />-->
+
             <TextView
                 android:id="@+id/textViewHead"
                 android:text="Heading"
@@ -29,6 +31,12 @@
             <TextView
                 android:id="@+id/textViewDesc"
                 android:text="Description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/textViewCardType"
+                android:text="CardType"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 

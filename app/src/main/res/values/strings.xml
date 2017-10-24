@@ -3,4 +3,6 @@
     <string name="open">Open</string>
     <string name="close">Close</string>
     <string name="account_name">MyAccount</string>
+    <string name="banlist_name">BanList</string>
+
 </resources>
