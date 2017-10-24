@@ -32,6 +32,11 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                     switch(item.getItemId()){
+                        case(R.id.nav_home):
+                            Intent homeActivity = new Intent(getApplicationContext(),MainActivity.class);
+                            startActivity(homeActivity);
+                            break;
+
                         case(R.id.nav_account):
                             Intent accountActivity = new Intent(getApplicationContext(),MyAccount.class);
                             startActivity(accountActivity);
