@@ -1,5 +1,6 @@
 package com.example.alexperez.duelapp;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -11,6 +12,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -94,19 +96,6 @@ public class BanList extends AppCompatActivity {
         listItems = new ArrayList<>();
 
         loadRecyclerViewData();
-
-//        for(int i = 0; i < 10; i++){
-//            ListItem card = new ListItem(
-//                    "Nekroz Of Brionac " + (i+1),
-//                    "Limited"
-//            );
-//
-//            listItems.add(card);
-//        }
-//
-//        adapter = new BanlistAdapter(listItems, this);
-//
-//        recyclerView.setAdapter(adapter);
     }
 
     private void loadRecyclerViewData(){
@@ -146,7 +135,8 @@ public class BanList extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-
+                        progressDialog.dismiss();
+                        Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
 

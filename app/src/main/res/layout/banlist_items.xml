@@ -10,16 +10,11 @@
         android:layout_height="wrap_content">
 
         <LinearLayout
-            android:padding="16dp"
+            android:padding="14dp"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/banlist_layout">
-            <!--android:background="#ADD8E6" -->
-            <!--<ImageView-->
-                <!--android:layout_gravity="left"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content" />-->
 
             <TextView
                 android:id="@+id/textViewHead"
@@ -36,9 +31,9 @@
 
             <TextView
                 android:id="@+id/textViewCardType"
-                android:text="CardType"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:text="CardType" />
 
         </LinearLayout>
 

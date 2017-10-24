@@ -1,5 +1,6 @@
 package com.example.alexperez.duelapp;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -32,11 +34,13 @@ public class BanlistAdapter extends RecyclerView.Adapter<BanlistAdapter.ViewHold
     //we will be grabbing the Data positon within the data, and grabbing the Head and Desc
     @Override
     public void onBindViewHolder(BanlistAdapter.ViewHolder holder, int position) {
-        ListItem listItem = listItems.get(position);
+        final ListItem listItem = listItems.get(position);
         //Base Color for Text
         holder.textViewCardType.setTextColor(Color.parseColor("#000000"));
         holder.textViewHead.setTextColor(Color.parseColor("#000000"));
         holder.textViewDesc.setTextColor(Color.parseColor("#000000"));
+
+
 
         switch(listItem.getCardType()){
             case("Monster"):
@@ -75,7 +79,7 @@ public class BanlistAdapter extends RecyclerView.Adapter<BanlistAdapter.ViewHold
                 break;
 
             case("Trap"):
-                holder.banlist_layout.setBackgroundColor(Color.parseColor("#EE82EE"));
+                holder.banlist_layout.setBackgroundColor(Color.parseColor("#FF00AF"));
                 break;
 
 
@@ -84,6 +88,13 @@ public class BanlistAdapter extends RecyclerView.Adapter<BanlistAdapter.ViewHold
         holder.textViewCardType.setText(listItem.getCardType());
         holder.textViewHead.setText(listItem.getHead());
         holder.textViewDesc.setText(listItem.getDesc());
+
+        holder.banlist_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context,"Status: " + listItem.getDesc(),Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     @Override

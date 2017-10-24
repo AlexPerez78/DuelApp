@@ -6,4 +6,6 @@
     <color name="startBlue">#09C6DF</color>
     <color name="endBlue">#0BCCE6</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="white">#FDFEFE</color>
+    <color name="lightBlack">#273746</color>
 </resources>
