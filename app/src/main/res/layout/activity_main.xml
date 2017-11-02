@@ -7,7 +7,7 @@
     tools:context="com.example.alexperez.duelapp.MainActivity"
     android:id="@+id/drawerLayout">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -19,7 +19,11 @@
                 android:text="Main Text"
                 android:textAlignment="center"
                 android:textSize="50sp" />
-        </LinearLayout>
+
+            <!-- Bottom Layout -->
+
+           <include layout="@layout/layout_bottom_navigation_view"/>
+        </RelativeLayout>
 
     <android.support.design.widget.NavigationView
         android:layout_width="wrap_content"
