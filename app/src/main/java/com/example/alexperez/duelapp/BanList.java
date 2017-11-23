@@ -3,6 +3,7 @@ package com.example.alexperez.duelapp;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
@@ -11,8 +12,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
+import android.support.v7.widget.Toolbar;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -20,6 +23,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,6 +44,8 @@ public class BanList extends AppCompatActivity {
 
     private List<ListItem> listItems;
 
+    MaterialSearchView searchView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,10 +56,72 @@ public class BanList extends AppCompatActivity {
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout,R.string.open, R.string.close);
 
         mDrawerLayout.addDrawerListener(mToggle);
-        mToggle.syncState();
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("BanList");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        mDrawerLayout.setDrawerListener(mToggle);
+        mToggle.syncState();
+        toolbar.setTitleTextColor(Color.parseColor("#FFFFFF"));
 
+        /*Recycler View*/
+        recyclerView = (RecyclerView) findViewById(R.id.banlistrecycle);
+        recyclerView.setHasFixedSize(true); //Every item in the recyclerview has a fixed size
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        listItems = new ArrayList<>();
+
+        loadRecyclerViewData();
+
+/*------------------------------------------------------------------------------------------------------ */
+        /*Set for the Search View */
+        searchView = (MaterialSearchView) findViewById(R.id.search_view);
+        searchView.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
+            @Override
+            public void onSearchViewShown() {
+
+            }
+
+            @Override
+            public void onSearchViewClosed() {
+                //If search view is closed, listview will restore itself to default
+                adapter = new BanlistAdapter(listItems,getApplicationContext());
+                recyclerView.setAdapter(adapter);
+
+            }
+        });
+
+        searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if(newText != null && !newText.isEmpty()){
+                  List<ListItem> queryListFound = new ArrayList<>();
+                  for(ListItem items:listItems){
+                      //Search Engine Head Text must be converted to Lowercase, else it will search only for specefic Lower or uppercase
+                      if(items.getHead().toLowerCase().contains(newText)){
+                          queryListFound.add(items);
+                      }
+
+                      adapter = new BanlistAdapter(queryListFound,getApplicationContext());
+                      recyclerView.setAdapter(adapter);
+                  }
+                }
+                else{
+                    adapter = new BanlistAdapter(listItems,getApplicationContext());
+                    recyclerView.setAdapter(adapter);
+                }
+                return false;
+            }
+        });
+/*------------------------------------------------------------------------------------------------------ */
+
+        /* Set For the Hamburger Menu*/
         NavigationView mNavigationView = (NavigationView) findViewById(R.id.nav_menu);
         mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -87,15 +155,6 @@ public class BanList extends AppCompatActivity {
                 return true;
             }
         });
-
-        /*Recycler View*/
-        recyclerView = (RecyclerView) findViewById(R.id.banlistrecycle);
-        recyclerView.setHasFixedSize(true); //Every item in the recyclerview has a fixed size
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        listItems = new ArrayList<>();
-
-        loadRecyclerViewData();
     }
 
     private void loadRecyclerViewData(){
@@ -150,5 +209,13 @@ public class BanList extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.cardsearchbar,menu);
+        MenuItem item = menu.findItem(R.id.card_search);
+        searchView.setMenuItem(item);
+        return true;
     }
 }

@@ -20,7 +20,7 @@
                 android:textAlignment="center"
                 android:textSize="50sp" />
 
-            <!-- Bottom Layout -->
+             Bottom Layout
 
            <include layout="@layout/layout_bottom_navigation_view"/>
         </RelativeLayout>

@@ -7,17 +7,44 @@
     tools:context="com.example.alexperez.duelapp.BanList"
     android:id="@+id/banlist_Drawerlayout">
 
-    <LinearLayout
+    <!--Added Custom toolbar, needed to change layouts from Linear to Relative -->
+    <RelativeLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary">
+
+        </android.support.v7.widget.Toolbar>
+
+    <!-- Custom Library for Material Search-->
+        <com.miguelcatalan.materialsearchview.MaterialSearchView
+            android:id="@+id/search_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:searchBackground="@color/colorPrimary"
+            app:searchSuggestionBackground="@color/colorPrimary"
+            app:searchCloseIcon="@drawable/ic_action_navigation_close_inverted"
+            app:searchBackIcon="@drawable/ic_action_navigation_arrow_back_inverted"
+            app:searchSuggestionIcon="@drawable/ic_suggestion"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#FFFFFF">
+
+        </com.miguelcatalan.materialsearchview.MaterialSearchView>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/banlistrecycle"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_below="@+id/toolbar">
 
         </android.support.v7.widget.RecyclerView>
-    </LinearLayout>
+
+    </RelativeLayout>
 
     <android.support.design.widget.NavigationView
         android:layout_width="wrap_content"
