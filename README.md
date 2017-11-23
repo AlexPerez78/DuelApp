@@ -18,9 +18,16 @@ Every Activity is set to the Players of the card game in which these can be usef
 .Settings: Configure themes, and other stuff to come to fruition.
 
 Phones Tested as of 11/20/17
-.Google Pixel + Xl
-.Galaxy S7 + S8
-.Galaxy Prime
+
+
+  .Google Pixel + Xl
+
+  .Galaxy S7 + S8
+
+  .Galaxy Prime
+
 
 OS tested as of 11/20/17
-5.0.0 - 7.1.1
+
+
+  5.0.0 - 7.1.1
