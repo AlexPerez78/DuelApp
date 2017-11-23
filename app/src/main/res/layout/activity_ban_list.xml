@@ -32,7 +32,8 @@
             app:searchBackIcon="@drawable/ic_action_navigation_arrow_back_inverted"
             app:searchSuggestionIcon="@drawable/ic_suggestion"
             android:textColor="#FFFFFF"
-            android:textColorHint="#FFFFFF">
+            android:textColorHint="#FFFFFF"
+            android:imeOptions="actionDone">
 
         </com.miguelcatalan.materialsearchview.MaterialSearchView>
 
@@ -47,6 +48,7 @@
     </RelativeLayout>
 
     <android.support.design.widget.NavigationView
+        android:layout_marginTop="?attr/actionBarSize"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         app:menu="@menu/navigation_menu"

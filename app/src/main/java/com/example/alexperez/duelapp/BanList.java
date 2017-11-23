@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -59,11 +60,12 @@ public class BanList extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setTitleTextColor(Color.parseColor("#FFFFFF"));
         getSupportActionBar().setTitle("BanList");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        mDrawerLayout.setDrawerListener(mToggle);
+        //Removes the Fade that Drawer navigation has
+        mDrawerLayout.setScrimColor(ContextCompat.getColor(BanList.this, android.R.color.transparent));
         mToggle.syncState();
-        toolbar.setTitleTextColor(Color.parseColor("#FFFFFF"));
 
         /*Recycler View*/
         recyclerView = (RecyclerView) findViewById(R.id.banlistrecycle);
@@ -74,7 +76,7 @@ public class BanList extends AppCompatActivity {
 
         loadRecyclerViewData();
 
-/*------------------------------------------------------------------------------------------------------ */
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------- */
         /*Set for the Search View */
         searchView = (MaterialSearchView) findViewById(R.id.search_view);
         searchView.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
@@ -119,7 +121,7 @@ public class BanList extends AppCompatActivity {
                 return false;
             }
         });
-/*------------------------------------------------------------------------------------------------------ */
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------- */
 
         /* Set For the Hamburger Menu*/
         NavigationView mNavigationView = (NavigationView) findViewById(R.id.nav_menu);
@@ -156,10 +158,10 @@ public class BanList extends AppCompatActivity {
             }
         });
     }
-
+    /*-------------------------------------------------------------------------------------------------------------------------------------------------------- */
     private void loadRecyclerViewData(){
         final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Loading Data...");
+        progressDialog.setMessage("Loading Card Data...");
         progressDialog.show();
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET,
@@ -194,6 +196,7 @@ public class BanList extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        //If an error would happen, a toast will state the error (Saving App From Crashing)
                         progressDialog.dismiss();
                         Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
                     }

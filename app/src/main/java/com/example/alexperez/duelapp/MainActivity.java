@@ -1,6 +1,7 @@
 package com.example.alexperez.duelapp;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.support.annotation.NonNull;
@@ -8,6 +9,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -120,9 +122,30 @@ public class MainActivity extends AppCompatActivity {
                         break;
 
                     case R.id.nightmode:
+                        Intent banlistActivity = new Intent(context,BanList.class);
+                        context.startActivity(banlistActivity);
                         break;
 
                     case R.id.reset:
+                        // Use the Builder class for convenient dialog construction
+                        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                        builder.setMessage("Would you like to start a new game?")
+                                .setPositiveButton("Restart", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        Toast.makeText(context, "Game Has Been Resetted " , Toast.LENGTH_SHORT).show();
+                                    }
+                                })
+                                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        // User cancelled the dialog
+                                        dialog.cancel();
+                                    }
+                                });
+                        // Create the AlertDialog object and return it
+                        AlertDialog alert = builder.create();
+                        alert.setTitle("New Game");
+                        alert.setIcon(R.drawable.ic_loop_black_24dp);
+                        alert.show();
                         break;
 
                 }
