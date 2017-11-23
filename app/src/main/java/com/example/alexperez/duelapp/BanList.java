@@ -1,22 +1,21 @@
 package com.example.alexperez.duelapp;
 
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
-import android.support.v7.widget.Toolbar;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -65,6 +64,8 @@ public class BanList extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //Removes the Fade that Drawer navigation has
         mDrawerLayout.setScrimColor(ContextCompat.getColor(BanList.this, android.R.color.transparent));
+        //Programtically set the hamburger menu to white instead of black
+        mToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.white));
         mToggle.syncState();
 
         /*Recycler View*/
