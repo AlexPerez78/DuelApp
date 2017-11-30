@@ -4,7 +4,8 @@
     <item
         android:id="@+id/dice"
         android:icon="@drawable/ic_dice"
-        android:title="">
+        android:title=""
+        >
     </item>
 
     <item

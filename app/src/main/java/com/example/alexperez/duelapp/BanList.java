@@ -83,6 +83,7 @@ public class BanList extends AppCompatActivity {
         searchView.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
             @Override
             public void onSearchViewShown() {
+                //Leave empty, we want to not touch the list that is shown when its pressed
 
             }
 
@@ -98,6 +99,7 @@ public class BanList extends AppCompatActivity {
         searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+
                 return false;
             }
 
@@ -110,6 +112,7 @@ public class BanList extends AppCompatActivity {
                       if(items.getHead().toLowerCase().contains(newText)){
                           queryListFound.add(items);
                       }
+
 
                       adapter = new BanlistAdapter(queryListFound,getApplicationContext());
                       recyclerView.setAdapter(adapter);

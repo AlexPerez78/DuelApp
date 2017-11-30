@@ -1,5 +1,6 @@
 package com.example.alexperez.duelapp;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -23,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
+
+    private static int ACTIVITY_NUM = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,11 +89,14 @@ public class MainActivity extends AppCompatActivity {
     */
     private void setupBottomNavigationView(){
         BottomNavigationViewEx bottomNavigationViewEx = (BottomNavigationViewEx)findViewById(R.id.bottomNavigationViewBar);
-        bottomNavigationViewEx.enableAnimation(true);
+        bottomNavigationViewEx.enableAnimation(false);
         bottomNavigationViewEx.enableItemShiftingMode(false);
         bottomNavigationViewEx.enableShiftingMode(false);
         bottomNavigationViewEx.setTextVisibility(false);
         enableNavigation(MainActivity.this, bottomNavigationViewEx);
+//        Menu menu = bottomNavigationViewEx.getMenu();
+//        MenuItem menuItem = menu.getItem(ACTIVITY_NUM);
+//        menuItem.setChecked(true);
     }
 
     public static void enableNavigation(final Context context, BottomNavigationViewEx view){
@@ -99,25 +105,15 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch(item.getItemId()){
                     case R.id.dice:
-                        int diceRolled = (int) (Math.random() * 6) + 1;
-                        MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.diceroll);
-                        mediaPlayer.start();
-                        Toast.makeText(context, "You Rolled a " + diceRolled , Toast.LENGTH_SHORT).show();
+                        ACTIVITY_NUM = 0;
+                        Intent diceActivity = new Intent(context, DiceRoll.class);
+                        context.startActivity(diceActivity);
                         break;
 
                     case R.id.coin:
-                        Random randomNum = new Random();
-                        int coinFlip = randomNum.nextInt(2);
-                        String output;
-                        if(coinFlip==0){
-                            output = "Heads";
-                        }
-                        else{
-                            output = "Tails";
-                        }
-                        MediaPlayer mediaPlayerCoin = MediaPlayer.create(context, R.raw.coinflipfx);
-                        mediaPlayerCoin.start();
-                        Toast.makeText(context, "You Flipped " + output , Toast.LENGTH_SHORT).show();
+                        ACTIVITY_NUM = 1;
+                        Intent flipCoinActivity = new Intent(context, FlipCoin.class);
+                        context.startActivity(flipCoinActivity);
                         break;
 
                     case R.id.nightmode:
@@ -152,4 +148,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+
 }

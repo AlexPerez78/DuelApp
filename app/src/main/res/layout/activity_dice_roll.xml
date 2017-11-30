@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/popup_bg"
+
+    android:orientation="vertical"
+    tools:context="com.example.alexperez.duelapp.DiceRoll">
+
+    <TextView
+        android:id="@+id/btnclose"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_gravity="end"
+        android:text="X"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:background="@drawable/buttonstylecircle"
+        />
+
+    <ImageView
+        android:id="@+id/starter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|center_vertical"
+        android:scaleType="fitXY"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/starter"
+        android:contentDescription="Image" />
+
+</LinearLayout>
