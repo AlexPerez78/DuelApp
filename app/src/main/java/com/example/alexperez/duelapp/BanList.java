@@ -33,8 +33,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BanList extends AppCompatActivity {
-
-    private static final String URL_DATA = "https://api.myjson.com/bins/1f9c5j";
+    //https://api.jsonbin.io/b/5a2233aa3cc482364837a0ca
+    private static final String URL_DATA = "https://api.jsonbin.io/b/5a2233aa3cc482364837a0ca";
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
