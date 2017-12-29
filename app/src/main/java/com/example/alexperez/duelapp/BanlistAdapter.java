@@ -42,54 +42,58 @@ public class BanlistAdapter extends RecyclerView.Adapter<BanlistAdapter.ViewHold
         holder.textViewHead.setTextColor(Color.parseColor("#000000"));
         holder.textViewDesc.setTextColor(Color.parseColor("#000000"));
 
-
+        /*This Will Control the background of the card type*/
 
         switch(listItem.getCardType()){
             case("Monster"):
-                holder.banlist_layout.setBackgroundColor(Color.parseColor("#F7DC6F"));
+//                holder.banlist_layout.setBackgroundColor(Color.parseColor("#F7DC6F"));
                 holder.banlist_layout.setBackgroundResource(R.drawable.normal_banner);
                 break;
 
             case("Monster/Effect"):
-                holder.banlist_layout.setBackgroundColor(Color.parseColor("#FFA500"));
+//                holder.banlist_layout.setBackgroundColor(Color.parseColor("#FFA500"));
                 holder.banlist_layout.setBackgroundResource(R.drawable.effect_banner);
                 break;
 
             case("Monster/Pendulum"):
-                holder.banlist_layout.setBackgroundColor(Color.parseColor("#FFA500"));
+//                holder.banlist_layout.setBackgroundColor(Color.parseColor("#FFA500"));
                 holder.banlist_layout.setBackgroundResource(R.drawable.pendulum_banner);
                 break;
 
             case("Monster/Fusion"):
-                holder.banlist_layout.setBackgroundColor(Color.parseColor("#9370DB"));
+//                holder.banlist_layout.setBackgroundColor(Color.parseColor("#9370DB"));
                 holder.banlist_layout.setBackgroundResource(R.drawable.fusion_banner);
                 break;
 
             case("Monster/Ritual"):
-                holder.banlist_layout.setBackgroundColor(Color.parseColor("#ADD8E6"));
+//                holder.banlist_layout.setBackgroundColor(Color.parseColor("#ADD8E6"));
                 holder.banlist_layout.setBackgroundResource(R.drawable.ritual_banner);
                 break;
 
             case("Monster/Synchro"):
-                holder.banlist_layout.setBackgroundColor(Color.parseColor("#D3D3D3"));
+//                holder.banlist_layout.setBackgroundColor(Color.parseColor("#D3D3D3"));
                 holder.banlist_layout.setBackgroundResource(R.drawable.synchro_banner);
                 break;
 
             case("Monster/Xyz"):
-                holder.banlist_layout.setBackgroundColor(Color.parseColor("#000000"));
-                holder.textViewCardType.setTextColor(Color.parseColor("#FDFEFE"));
+//                holder.banlist_layout.setBackgroundColor(Color.parseColor("#000000"));
+//                holder.textViewCardType.setTextColor(Color.parseColor("#FDFEFE"));
                 holder.textViewHead.setTextColor(Color.parseColor("#FDFEFE"));
                 holder.textViewDesc.setTextColor(Color.parseColor("#FDFEFE"));
+                holder.textViewCardType.setTextColor(Color.parseColor("#FDFEFE"));
                 holder.banlist_layout.setBackgroundResource(R.drawable.xyz_banner);
                 break;
 
+            case("Monster/Link"):
+                holder.banlist_layout.setBackgroundResource(R.drawable.link_banner);
+
             case("Spell"):
-                holder.banlist_layout.setBackgroundColor(Color.parseColor("#20B2AA"));
+//                holder.banlist_layout.setBackgroundColor(Color.parseColor("#20B2AA"));
                 holder.banlist_layout.setBackgroundResource(R.drawable.spell_banner);
                 break;
 
             case("Trap"):
-                holder.banlist_layout.setBackgroundColor(Color.parseColor("#FF00AF"));
+//                holder.banlist_layout.setBackgroundColor(Color.parseColor("#FF00AF"));
                 holder.banlist_layout.setBackgroundResource(R.drawable.trap_banner);
                 break;
 

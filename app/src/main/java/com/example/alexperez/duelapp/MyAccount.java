@@ -23,7 +23,6 @@ public class MyAccount extends AppCompatActivity {
             public void onClick(View view) {
                 Intent homeActivity = new Intent(getApplicationContext(),MainActivity.class);
                 startActivity(homeActivity);
-                Toast.makeText(view.getContext(), "Home", Toast.LENGTH_LONG).show();
             }
         });
 
