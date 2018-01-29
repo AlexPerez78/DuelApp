@@ -9,20 +9,229 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
+            android:background="@drawable/synchro_banner"
             android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/main"
+            <!--Bottom Layout-->
+           <include layout="@layout/layout_bottom_navigation_view"
+               android:id="@+id/include" />
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/constraintLayout"
                 android:layout_width="match_parent"
+                android:layout_height="230dp"
+                android:layout_alignParentTop="true"
+                android:background="@drawable/effect_banner"
+                android:layout_centerHorizontal="true">
+
+                <ImageView
+                    android:id="@+id/imageView_Player1"
+                    android:layout_width="85dp"
+                    android:layout_height="125dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:src="@drawable/yugi_avatar"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/progressBar_PLayer1"
+                    app:layout_constraintHorizontal_bias="0.94"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.247" />
+
+                <TextView
+                    android:id="@+id/textView_Name_Player1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="28dp"
+                    android:text="Player 1"
+                    android:textAllCaps="false"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/imageView_Player1"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ProgressBar
+                    android:id="@+id/progressBar_PLayer1"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_Name_Player1"
+                    android:background="#000"
+                    android:indeterminate="false"
+                    android:max="8000"
+                    android:padding="2dp"
+                    android:progress="8000"
+                    android:progressDrawable="@drawable/custom_healthbar"/>
+
+                <TextView
+                    android:id="@+id/healthpoint_Value_Player1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Health Points"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/progressBar_PLayer1"
+                    app:layout_constraintEnd_toEndOf="@+id/progressBar_PLayer1"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/progressBar_PLayer1"
+                    app:layout_constraintTop_toTopOf="@+id/progressBar_PLayer1" />
+
+                <Button
+                    android:id="@+id/add_LP_Player1"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="75dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="+"
+                    android:textColor="@android:color/holo_green_light"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/sub_LP_Player1"
+                    app:layout_constraintHorizontal_bias="0.968"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.587" />
+
+                <Button
+                    android:id="@+id/sub_LP_Player1"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="75dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="128dp"
+                    android:text="-"
+                    android:textColor="@android:color/holo_red_light"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.587" />
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="230dp"
+                android:layout_above="@+id/include"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/fusion_banner"
+                android:id="@+id/constraintLayout2">
+
+                <ImageView
+                    android:id="@+id/imageView_Player2"
+                    android:layout_width="85dp"
+                    android:layout_height="125dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/progressBar_PLayer2"
+                    app:layout_constraintHorizontal_bias="0.94"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.247"
+                    android:src="@drawable/jaden_avatar"/>
+
+                <TextView
+                    android:id="@+id/textView_Name_Player2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="28dp"
+                    android:text="Player 2"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/imageView_Player2"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ProgressBar
+                    android:id="@+id/progressBar_PLayer2"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_Name_Player2"
+                    android:background="#000"
+                    android:indeterminate="false"
+                    android:max="8000"
+                    android:padding="2dp"
+                    android:progress="8000"
+                    android:progressDrawable="@drawable/custom_healthbar"/>
+
+                <TextView
+                    android:id="@+id/healthpoint_Value_Player2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Health Points"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/progressBar_PLayer2"
+                    app:layout_constraintEnd_toEndOf="@+id/progressBar_PLayer2"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/progressBar_PLayer2"
+                    app:layout_constraintTop_toTopOf="@+id/progressBar_PLayer2" />
+
+                <Button
+                    android:id="@+id/add_LP_Player2"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="75dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="+"
+                    android:textColor="@android:color/holo_green_light"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/sub_LP_Player2"
+                    app:layout_constraintHorizontal_bias="0.968"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.587" />
+
+                <Button
+                    android:id="@+id/sub_LP_Player2"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="75dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="128dp"
+                    android:text="-"
+                    android:textColor="@android:color/holo_red_light"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.587" />
+
+            </android.support.constraint.ConstraintLayout>
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="450dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:text="Main Text"
-                android:textAlignment="center"
-                android:textSize="50sp" />
+                android:layout_above="@+id/constraintLayout2"
+                android:layout_below="@+id/constraintLayout"
+                android:layout_centerHorizontal="true"
+                android:src="@mipmap/smash_versus"
+                app:srcCompat="@mipmap/ic_launcher" />
 
-             Bottom Layout
-
-           <include layout="@layout/layout_bottom_navigation_view"/>
         </RelativeLayout>
 
     <android.support.design.widget.NavigationView
