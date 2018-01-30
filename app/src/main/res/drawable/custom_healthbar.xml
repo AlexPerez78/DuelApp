@@ -6,7 +6,7 @@
                 android:endColor="#FF0000"
                 android:centerColor="#11ff11"
                 android:startColor="#11ff11"
-                
+
                 android:useLevel="true" />
         </shape>
     </item>

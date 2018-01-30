@@ -12,9 +12,14 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,6 +34,10 @@ public class MainActivity extends AppCompatActivity {
     static ProgressBar progressBar_Player1,progressBar_Player2;
     static TextView healthValue_Player1, healthValue_Player2;
 
+    EditText user_input;
+    int flag;
+    String command;
+
     private static int ACTIVITY_NUM = 0;
 
     @Override
@@ -38,6 +47,96 @@ public class MainActivity extends AppCompatActivity {
 
         final MediaPlayer life_Point_loss = MediaPlayer.create(getApplicationContext(), R.raw.lifepoint_drop);
 
+        /*-------------------------------------Player Lifepoint Input View-------------------------------------------*/
+
+        final AlertDialog.Builder life_point_calc = new AlertDialog.Builder(this);
+
+        life_point_calc.setTitle("Enter LifePoint Loss/Add");
+
+        user_input = new EditText(getApplicationContext());
+        user_input.setInputType(InputType.TYPE_CLASS_NUMBER);
+        life_point_calc.setView(user_input);
+
+        life_point_calc.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                if(flag == 1 ){
+                    if(command.equalsIgnoreCase("add")){
+                        String txt = user_input.getText().toString();
+                        int current_Lifepoints = progressBar_Player1.getProgress() + Integer.parseInt(txt);
+                        Toast.makeText(getApplicationContext(),Integer.toString(current_Lifepoints),Toast.LENGTH_SHORT).show();
+
+                        if(current_Lifepoints > progressBar_Player1.getMax()){
+                            progressBar_Player1.setMax(current_Lifepoints);
+                        }
+
+                        progressBar_Player1.setProgress(current_Lifepoints);
+                        healthValue_Player1.setText(Integer.toString(current_Lifepoints));
+                        user_input.setText("");
+                    }
+                    else{
+                        life_Point_loss.start();
+                        String txt = user_input.getText().toString();
+                        int current_Lifepoints = progressBar_Player1.getProgress() - Integer.parseInt(txt);
+                        Toast.makeText(getApplicationContext(),Integer.toString(current_Lifepoints),Toast.LENGTH_SHORT).show();
+
+                        progressBar_Player1.setProgress(current_Lifepoints);
+                        healthValue_Player1.setText(Integer.toString(current_Lifepoints));
+                        user_input.setText("");
+                    }
+
+                }
+                else{
+                    if(command.equalsIgnoreCase("add")){
+                        String txt = user_input.getText().toString();
+                        int current_Lifepoints = progressBar_Player2.getProgress() + Integer.parseInt(txt);
+                        Toast.makeText(getApplicationContext(),Integer.toString(current_Lifepoints),Toast.LENGTH_SHORT).show();
+
+                        if(current_Lifepoints > progressBar_Player2.getMax()){
+                            progressBar_Player2.setMax(current_Lifepoints);
+                        }
+
+                        progressBar_Player2.setProgress(current_Lifepoints);
+                        healthValue_Player2.setText(Integer.toString(current_Lifepoints));
+                        user_input.setText("");
+                    }
+                    else{
+                        life_Point_loss.start();
+                        String txt = user_input.getText().toString();
+                        int current_Lifepoints = progressBar_Player2.getProgress() - Integer.parseInt(txt);
+                        Toast.makeText(getApplicationContext(),Integer.toString(current_Lifepoints),Toast.LENGTH_SHORT).show();
+
+                        progressBar_Player2.setProgress(current_Lifepoints);
+                        healthValue_Player2.setText(Integer.toString(current_Lifepoints));
+                        user_input.setText("");
+                    }
+
+                }
+            }
+        });
+        life_point_calc.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        final AlertDialog ad = life_point_calc.create();
+
+        /*Handling Key Action event to Dismiss a Dialog*/
+        ad.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+        user_input.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int action_id, KeyEvent keyEvent) {
+                if(action_id == EditorInfo.IME_ACTION_DONE){
+                    Toast.makeText(getApplication(),"Press Submit",Toast.LENGTH_SHORT).show();
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+        });
+        /*-----------------------------------------------------------------------------------------------*/
+
         /*-------------------------------------Player 1 Controls-------------------------------------------*/
         progressBar_Player1 = (ProgressBar) findViewById(R.id.progressBar_PLayer1);
         progressBar_Player1.setMax(8000);
@@ -46,17 +145,14 @@ public class MainActivity extends AppCompatActivity {
         healthValue_Player1 = (TextView) findViewById(R.id.healthpoint_Value_Player1);
         healthValue_Player1.setText(Integer.toString(progressBar_Player1.getProgress()));
 
-        Button player1_Add = (Button)findViewById(R.id.add_LP_Player1);
+        final Button player1_Add = (Button)findViewById(R.id.add_LP_Player1);
         player1_Add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                progressBar_Player1.setProgress(8000);
-                healthValue_Player1.setText(Integer.toString(progressBar_Player1.getProgress()));
+                flag = 1;
+                command = "add";
+                ad.show();
 
-                if(progressBar_Player1.getProgress() > 8000){
-                    //Set new Max with progressBar current Lifepoint
-                    progressBar_Player1.setMax(progressBar_Player1.getProgress());
-                }
             }
         });
 
@@ -64,9 +160,9 @@ public class MainActivity extends AppCompatActivity {
         player1_Sub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                life_Point_loss.start();
-                progressBar_Player1.setProgress(4000);
-                healthValue_Player1.setText(Integer.toString(progressBar_Player1.getProgress()));
+                flag = 1;
+                command = "subtract";
+                ad.show();
             }
         });
     /*-------------------------------------Player 2 Controls-------------------------------------------*/
@@ -81,13 +177,9 @@ public class MainActivity extends AppCompatActivity {
         player2_Add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                progressBar_Player2.setProgress(8000);
-                healthValue_Player2.setText(Integer.toString(progressBar_Player2.getProgress()));
-
-                if(progressBar_Player2.getProgress() > 8000){
-                    //Set new Max with progressBar current Lifepoint
-                    progressBar_Player2.setMax(progressBar_Player2.getProgress());
-                }
+                flag = 2;
+                command = "add";
+                ad.show();
             }
         });
 
@@ -95,9 +187,9 @@ public class MainActivity extends AppCompatActivity {
         player2_Sub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                life_Point_loss.start();
-                progressBar_Player2.setProgress(4000);
-                healthValue_Player2.setText(Integer.toString(progressBar_Player2.getProgress()));
+                flag = 2;
+                command = "subtract";
+                ad.show();
             }
         });
 
