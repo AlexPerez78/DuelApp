@@ -3,6 +3,7 @@ package com.example.alexperez.duelapp;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -25,6 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
+import com.muddzdev.styleabletoastlibrary.StyleableToast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -45,7 +47,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final MediaPlayer life_Point_loss = MediaPlayer.create(getApplicationContext(), R.raw.lifepoint_drop);
+        final MediaPlayer life_Point_sound = MediaPlayer.create(getApplicationContext(), R.raw.lifepoint_drop);
+        final MediaPlayer life_Point_zero = MediaPlayer.create(getApplicationContext(), R.raw.lifepoints_to_zero);
 
         /*-------------------------------------Player Lifepoint Input View-------------------------------------------*/
 
@@ -62,9 +65,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialogInterface, int i) {
                 if(flag == 1 ){
                     if(command.equalsIgnoreCase("add")){
+                        life_Point_sound.start();
                         String txt = user_input.getText().toString();
                         int current_Lifepoints = progressBar_Player1.getProgress() + Integer.parseInt(txt);
-                        Toast.makeText(getApplicationContext(),Integer.toString(current_Lifepoints),Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getApplicationContext(),Integer.toString(current_Lifepoints),Toast.LENGTH_SHORT).show();
 
                         if(current_Lifepoints > progressBar_Player1.getMax()){
                             progressBar_Player1.setMax(current_Lifepoints);
@@ -75,10 +79,17 @@ public class MainActivity extends AppCompatActivity {
                         user_input.setText("");
                     }
                     else{
-                        life_Point_loss.start();
                         String txt = user_input.getText().toString();
                         int current_Lifepoints = progressBar_Player1.getProgress() - Integer.parseInt(txt);
-                        Toast.makeText(getApplicationContext(),Integer.toString(current_Lifepoints),Toast.LENGTH_SHORT).show();
+                        if(current_Lifepoints <= 0){
+                            life_Point_zero.start();
+                            current_Lifepoints = 0;
+                            StyleableToast.makeText(getApplicationContext(),"Player 1 Has Lost The Duel",R.style.Lost_Toast).show();
+                        }
+                        else{
+                            life_Point_sound.start();
+                        }
+                        //Toast.makeText(getApplicationContext(),Integer.toString(current_Lifepoints),Toast.LENGTH_SHORT).show();
 
                         progressBar_Player1.setProgress(current_Lifepoints);
                         healthValue_Player1.setText(Integer.toString(current_Lifepoints));
@@ -88,9 +99,10 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else{
                     if(command.equalsIgnoreCase("add")){
+                        life_Point_sound.start();
                         String txt = user_input.getText().toString();
                         int current_Lifepoints = progressBar_Player2.getProgress() + Integer.parseInt(txt);
-                        Toast.makeText(getApplicationContext(),Integer.toString(current_Lifepoints),Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getApplicationContext(),Integer.toString(current_Lifepoints),Toast.LENGTH_SHORT).show();
 
                         if(current_Lifepoints > progressBar_Player2.getMax()){
                             progressBar_Player2.setMax(current_Lifepoints);
@@ -101,10 +113,17 @@ public class MainActivity extends AppCompatActivity {
                         user_input.setText("");
                     }
                     else{
-                        life_Point_loss.start();
                         String txt = user_input.getText().toString();
                         int current_Lifepoints = progressBar_Player2.getProgress() - Integer.parseInt(txt);
-                        Toast.makeText(getApplicationContext(),Integer.toString(current_Lifepoints),Toast.LENGTH_SHORT).show();
+                        if(current_Lifepoints <= 0){
+                            life_Point_zero.start();
+                            current_Lifepoints = 0;
+                            StyleableToast.makeText(getApplicationContext(),"Player 2 Has Lost The Duel",R.style.Lost_Toast).show();
+                        }
+                        else{
+                            life_Point_sound.start();
+                        }
+                        //Toast.makeText(getApplicationContext(),Integer.toString(current_Lifepoints),Toast.LENGTH_SHORT).show();
 
                         progressBar_Player2.setProgress(current_Lifepoints);
                         healthValue_Player2.setText(Integer.toString(current_Lifepoints));
@@ -117,6 +136,7 @@ public class MainActivity extends AppCompatActivity {
         life_point_calc.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+                user_input.setText("");
                 dialogInterface.dismiss();
             }
         });
@@ -139,8 +159,8 @@ public class MainActivity extends AppCompatActivity {
 
         /*-------------------------------------Player 1 Controls-------------------------------------------*/
         progressBar_Player1 = (ProgressBar) findViewById(R.id.progressBar_PLayer1);
-        progressBar_Player1.setMax(8000);
-        progressBar_Player1.setProgress(8000);
+        //progressBar_Player1.setMax(8000);
+        //progressBar_Player1.setProgress(8000);
 
         healthValue_Player1 = (TextView) findViewById(R.id.healthpoint_Value_Player1);
         healthValue_Player1.setText(Integer.toString(progressBar_Player1.getProgress()));
@@ -167,8 +187,8 @@ public class MainActivity extends AppCompatActivity {
         });
     /*-------------------------------------Player 2 Controls-------------------------------------------*/
         progressBar_Player2 = (ProgressBar) findViewById(R.id.progressBar_PLayer2);
-        progressBar_Player2.setMax(8000);
-        progressBar_Player2.setProgress(8000);
+        //progressBar_Player2.setMax(8000);
+        //progressBar_Player2.setProgress(8000);
 
         healthValue_Player2 = (TextView) findViewById(R.id.healthpoint_Value_Player2);
         healthValue_Player2.setText(Integer.toString(progressBar_Player2.getProgress()));
@@ -290,7 +310,7 @@ public class MainActivity extends AppCompatActivity {
                         builder.setMessage("Would you like to start a new game?")
                                 .setPositiveButton("Restart", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
-                                        Toast.makeText(context, "Game Has Been Resetted " , Toast.LENGTH_SHORT).show();
+                                        StyleableToast.makeText(context,"Game Has Been Resetted",R.style.Game_Reset).show();
                                         progressBar_Player1.setProgress(8000); //Reset The Game
                                         healthValue_Player1.setText(Integer.toString(progressBar_Player1.getProgress()));
 

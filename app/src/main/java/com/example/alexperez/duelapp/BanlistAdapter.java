@@ -13,6 +13,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.muddzdev.styleabletoastlibrary.StyleableToast;
+
 import java.util.List;
 
 public class BanlistAdapter extends RecyclerView.Adapter<BanlistAdapter.ViewHolder>{
@@ -107,7 +109,7 @@ public class BanlistAdapter extends RecyclerView.Adapter<BanlistAdapter.ViewHold
         holder.banlist_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context,"Status: " + listItem.getDesc(),Toast.LENGTH_LONG).show();
+                StyleableToast.makeText(context,"Status: " + listItem.getDesc(),R.style.Card_Status).show();
             }
         });
     }

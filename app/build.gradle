@@ -41,4 +41,10 @@ dependencies {
 
     //Material Search View (Card Banlist)
     compile 'com.miguelcatalan:materialsearchview:1.4.0'
+
+    //Custom Toast
+    implementation 'com.muddzdev:styleabletoast:2.0.1'
+
+    //Circle Images
+    compile 'de.hdodenhof:circleimageview:2.2.0'
 }

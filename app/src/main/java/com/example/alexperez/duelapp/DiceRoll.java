@@ -16,6 +16,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.muddzdev.styleabletoastlibrary.StyleableToast;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Random;
@@ -100,7 +102,7 @@ public class DiceRoll extends Activity {
                 }else{
                     starter.setEnabled(true);
                     dice_Spinning = 0; //Reset Number of Rolls
-                    Toast.makeText(getApplicationContext(),"You Rolled A " + diceRolled, Toast.LENGTH_SHORT).show();
+                    StyleableToast.makeText(getApplicationContext(),"You Rolled A " + diceRolled,R.style.Rolling_Flip).show();
                 }
             }
             //}

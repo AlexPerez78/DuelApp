@@ -20,5 +20,56 @@
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowCloseOnTouchOutside">true</item>
     </style>
+    <!--Custom Toast Style's Throughout The Application-->
+    <style name="Lost_Toast">
+        <item name="textBold">true</item>
+        <item name="textColor">#000</item>
+        <item name="textSize">16sp</item>
+        <item name="colorBackground">#f40000</item>
+        <item name="strokeWidth">3dp</item>
+        <item name="strokeColor">#000</item>
+        <item name="iconLeft">@mipmap/ic_win_loss</item>
+        <item name="iconRight">@mipmap/ic_win_loss</item>
+        <item name="length">LONG</item>
+        <item name="cornerRadius">5dp</item>
+    </style>
+
+    <style name="Rolling_Flip">
+        <item name="textBold">true</item>
+        <item name="textColor">#000</item>
+        <item name="textSize">16sp</item>
+        <item name="colorBackground">#5DADE2</item>
+        <item name="strokeWidth">3dp</item>
+        <item name="strokeColor">#000</item>
+        <item name="iconLeft">@mipmap/ic_favorite</item>
+        <item name="iconRight">@mipmap/ic_favorite</item>
+        <item name="length">SHORT</item>
+        <item name="cornerRadius">5dp</item>
+    </style>
+
+    <style name="Card_Status">
+        <item name="textBold">true</item>
+        <item name="textColor">#85C1E9</item>
+        <item name="textSize">16sp</item>
+        <item name="colorBackground">#4a4c4f</item>
+        <item name="solidBackground">true</item>
+        <item name="strokeWidth">3dp</item>
+        <item name="strokeColor">#85C1E9</item>
+        <item name="iconLeft">@mipmap/deck_image</item>
+        <item name="iconRight">@mipmap/deck_image</item>
+        <item name="length">SHORT</item>
+    </style>
+
+    <style name="Game_Reset">
+        <item name="textBold">true</item>
+        <item name="textColor">#000</item>
+        <item name="textSize">16sp</item>
+        <item name="colorBackground">#58D68D</item>
+        <item name="solidBackground">true</item>
+        <item name="strokeWidth">3dp</item>
+        <item name="strokeColor">#58D68D</item>
+        <item name="iconLeft">@drawable/ic_loop_black_24dp</item>
+        <item name="length">SHORT</item>
+    </style>
 
 </resources>
