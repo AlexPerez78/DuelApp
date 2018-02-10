@@ -29,8 +29,10 @@
         <activity
             android:name=".DiceRoll"
             android:theme="@style/AppTheme.PopUp" />
-        <activity android:name=".FlipCoin"
-            android:theme="@style/AppTheme.PopUp"></activity>
+        <activity
+            android:name=".FlipCoin"
+            android:theme="@style/AppTheme.PopUp" />
+        <activity android:name=".DuelGenerator"></activity>
     </application>
 
 </manifest>

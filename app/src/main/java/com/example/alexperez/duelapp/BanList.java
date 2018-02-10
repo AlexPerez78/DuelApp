@@ -38,7 +38,7 @@ import java.util.List;
 
 public class BanList extends AppCompatActivity {
     //https://api.jsonbin.io/b/5a2233aa3cc482364837a0ca
-    private static final String URL_DATA = "https://api.jsonbin.io/b/5a2233aa3cc482364837a0ca";
+    private static final String URL_DATA = "https://api.jsonbin.io/b/5a2233aa3cc482364837a0ca/3";
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
@@ -117,7 +117,10 @@ public class BanList extends AppCompatActivity {
                   List<ListItem> queryListFound = new ArrayList<>();
                   for(ListItem items:listItems){
                       //Search Engine Head Text must be converted to Lowercase, else it will search only for specefic Lower or uppercase
-                      if(items.getHead().toLowerCase().contains(newText)){
+                      if(newText.equalsIgnoreCase("update") && !items.getRemark().isEmpty()){
+                          queryListFound.add(items);
+                      }
+                      else if(items.getHead().toLowerCase().contains(newText)){
                           queryListFound.add(items);
                       }
 
@@ -157,7 +160,7 @@ public class BanList extends AppCompatActivity {
                         break;
 
                     case(R.id.nav_tournament):
-                        Intent tournamentActivity = new Intent(getApplicationContext(),MainActivity.class);
+                        Intent tournamentActivity = new Intent(getApplicationContext(),DuelGenerator.class);
                         startActivity(tournamentActivity);
                         break;
 
@@ -192,7 +195,7 @@ public class BanList extends AppCompatActivity {
                                         o.getString("Card Type"),
                                         o.getString("Card Name"),
                                         o.getString("Advance Format"),
-                                        o.getString("User Format")
+                                        o.getString("Remarks")
                                 );
                                 listItems.add(item);
                             }

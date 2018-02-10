@@ -1,6 +1,7 @@
 package com.example.alexperez.duelapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -9,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import java.net.URI;
 
 public class MyAccount extends AppCompatActivity {
 
@@ -40,6 +43,9 @@ public class MyAccount extends AppCompatActivity {
             }
         });
 
+        SharedPreferences settings = getSharedPreferences("MyPrefs",0);
+        profile_picture.setImageURI(imageURI.parse(settings.getString("photo_Value"," ")));
+
 
     }
 
@@ -56,5 +62,14 @@ public class MyAccount extends AppCompatActivity {
             profile_picture.setImageURI(imageURI);
         }
     }
-}
 
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+    }
+}

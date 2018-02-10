@@ -8,13 +8,13 @@ public class ListItem {
     private String head;
     private String desc;
     private String cardType;
-    private String userFormat;
+    private String remark;
 
-    public ListItem(String cardType, String head, String desc, String userFormat) {
+    public ListItem(String cardType, String head, String desc, String remark) {
         this.cardType = cardType;
         this.head = head;
         this.desc = desc;
-        this.userFormat = userFormat;
+        this.remark = remark;
 
     }
 
@@ -31,7 +31,7 @@ public class ListItem {
         return cardType;
     }
 
-    public String getUserFormat() {
-        return userFormat;
+    public String getRemark() {
+        return remark;
     }
 }

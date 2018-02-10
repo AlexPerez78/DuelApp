@@ -245,7 +245,7 @@ public class MainActivity extends AppCompatActivity {
                             break;
 
                         case(R.id.nav_tournament):
-                            Intent tournamentActivity = new Intent(getApplicationContext(),MainActivity.class);
+                            Intent tournamentActivity = new Intent(getApplicationContext(),DuelGenerator.class);
                             startActivity(tournamentActivity);
                             break;
 

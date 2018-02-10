@@ -88,6 +88,7 @@ public class BanlistAdapter extends RecyclerView.Adapter<BanlistAdapter.ViewHold
 
             case("Monster/Link"):
                 holder.banlist_layout.setBackgroundResource(R.drawable.link_banner);
+                break;
 
             case("Spell"):
 //                holder.banlist_layout.setBackgroundColor(Color.parseColor("#20B2AA"));
