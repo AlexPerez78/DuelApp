@@ -1,9 +1,9 @@
 package com.example.alexperez.duelapp;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -30,7 +30,6 @@ import com.muddzdev.styleabletoastlibrary.StyleableToast;
 
 public class MainActivity extends AppCompatActivity {
 
-    private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
 
     static ProgressBar progressBar_Player1,progressBar_Player2;
@@ -40,8 +39,7 @@ public class MainActivity extends AppCompatActivity {
     int flag;
     String command;
 
-    private static int ACTIVITY_NUM = 0;
-
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,8 +59,10 @@ public class MainActivity extends AppCompatActivity {
         life_point_calc.setView(user_input);
 
         life_point_calc.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+                /*Player 1 Life Point Calculation*/
                 if(flag == 1 ){
                     if(command.equalsIgnoreCase("add")){
                         life_Point_sound.start();
@@ -97,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                 }
+                /*Player 2 LifePoint Calculation*/
                 else{
                     if(command.equalsIgnoreCase("add")){
                         life_Point_sound.start();
@@ -159,8 +160,6 @@ public class MainActivity extends AppCompatActivity {
 
         /*-------------------------------------Player 1 Controls-------------------------------------------*/
         progressBar_Player1 = (ProgressBar) findViewById(R.id.progressBar_PLayer1);
-        //progressBar_Player1.setMax(8000);
-        //progressBar_Player1.setProgress(8000);
 
         healthValue_Player1 = (TextView) findViewById(R.id.healthpoint_Value_Player1);
         healthValue_Player1.setText(Integer.toString(progressBar_Player1.getProgress()));
@@ -187,8 +186,6 @@ public class MainActivity extends AppCompatActivity {
         });
     /*-------------------------------------Player 2 Controls-------------------------------------------*/
         progressBar_Player2 = (ProgressBar) findViewById(R.id.progressBar_PLayer2);
-        //progressBar_Player2.setMax(8000);
-        //progressBar_Player2.setProgress(8000);
 
         healthValue_Player2 = (TextView) findViewById(R.id.healthpoint_Value_Player2);
         healthValue_Player2.setText(Integer.toString(progressBar_Player2.getProgress()));
@@ -215,7 +212,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+        DrawerLayout mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout,R.string.open, R.string.close);
 
         mDrawerLayout.addDrawerListener(mToggle);
@@ -261,14 +258,11 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(mToggle.onOptionsItemSelected(item)){
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+        return mToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
     }
 
     /*
-    * BottomNavigationView setup
+    * BottomNavigationView setup to view
     */
     private void setupBottomNavigationView(){
         BottomNavigationViewEx bottomNavigationViewEx = (BottomNavigationViewEx)findViewById(R.id.bottomNavigationViewBar);
@@ -288,13 +282,11 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch(item.getItemId()){
                     case R.id.dice:
-                        ACTIVITY_NUM = 0;
                         Intent diceActivity = new Intent(context, DiceRoll.class);
                         context.startActivity(diceActivity);
                         break;
 
                     case R.id.coin:
-                        ACTIVITY_NUM = 1;
                         Intent flipCoinActivity = new Intent(context, FlipCoin.class);
                         context.startActivity(flipCoinActivity);
                         break;
@@ -309,8 +301,9 @@ public class MainActivity extends AppCompatActivity {
                         AlertDialog.Builder builder = new AlertDialog.Builder(context);
                         builder.setMessage("Would you like to start a new game?")
                                 .setPositiveButton("Restart", new DialogInterface.OnClickListener() {
+                                    @SuppressLint("SetTextI18n")
                                     public void onClick(DialogInterface dialog, int id) {
-                                        StyleableToast.makeText(context,"Game Has Been Resetted",R.style.Game_Reset).show();
+                                        StyleableToast.makeText(context,"Game Has Been Reset",R.style.Game_Reset).show();
                                         progressBar_Player1.setProgress(8000); //Reset The Game
                                         healthValue_Player1.setText(Integer.toString(progressBar_Player1.getProgress()));
 

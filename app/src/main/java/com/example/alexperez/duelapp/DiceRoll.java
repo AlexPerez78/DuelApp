@@ -1,29 +1,23 @@
 package com.example.alexperez.duelapp;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Context;
-import android.media.MediaPlayer;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.muddzdev.styleabletoastlibrary.StyleableToast;
 
-import java.io.IOException;
 import java.util.HashMap;
-import java.util.Random;
 
 public class DiceRoll extends Activity {
-    private Random random = new Random();
+    @SuppressLint("UseSparseArrays")
     private HashMap<Integer, Integer> diceResource = new HashMap<>();
     TextView btn_close;
     int dice_Spinning = 0;
@@ -77,12 +71,12 @@ public class DiceRoll extends Activity {
                 MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.diceroll);
                 mediaPlayer.start();
                 starter.setImageResource(diceResource.get(diceRolled));*/
-                DiceRoll();
+                RollDice();
             }
         });
     }
 
-    public void DiceRoll(){
+    public void RollDice(){
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             public void run() {
@@ -97,7 +91,7 @@ public class DiceRoll extends Activity {
                 //mediaPlayer.release();
 
                 if(dice_Spinning < 10){
-                    DiceRoll(); //Recursion to Mimic a Dice Rolling
+                    RollDice(); //Recursion to Mimic a Dice Rolling Action
 
                 }else{
                     starter.setEnabled(true);

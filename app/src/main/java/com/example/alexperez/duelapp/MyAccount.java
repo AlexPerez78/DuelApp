@@ -9,13 +9,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
-
-import java.net.URI;
 
 public class MyAccount extends AppCompatActivity {
 
-    private Button home_Button;
     private ImageView profile_picture;
     private static final int PICK_IMAGE = 100;
     Uri imageURI;
@@ -33,7 +29,7 @@ public class MyAccount extends AppCompatActivity {
             }
         });
 
-        home_Button = (Button)findViewById(R.id.homeButton);
+        Button home_Button = (Button)findViewById(R.id.homeButton);
 
         home_Button.setOnClickListener(new View.OnClickListener() {
             @Override

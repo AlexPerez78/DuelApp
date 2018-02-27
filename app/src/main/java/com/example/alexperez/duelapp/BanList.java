@@ -1,7 +1,6 @@
 package com.example.alexperez.duelapp;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -17,7 +16,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
@@ -28,6 +26,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
+import com.muddzdev.styleabletoastlibrary.StyleableToast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -37,10 +36,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BanList extends AppCompatActivity {
-    //https://api.jsonbin.io/b/5a2233aa3cc482364837a0ca
     private static final String URL_DATA = "https://api.jsonbin.io/b/5a2233aa3cc482364837a0ca/3";
 
-    private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
 
     private RecyclerView recyclerView;
@@ -56,7 +53,7 @@ public class BanList extends AppCompatActivity {
         setContentView(R.layout.activity_ban_list);
 
         /*Navigation Drawer (Hamburger Menu)*/
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.banlist_Drawerlayout);
+        DrawerLayout mDrawerLayout = (DrawerLayout) findViewById(R.id.banlist_Drawerlayout);
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout,R.string.open, R.string.close);
 
         mDrawerLayout.addDrawerListener(mToggle);
@@ -68,7 +65,7 @@ public class BanList extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //Removes the Fade that Drawer navigation has
         mDrawerLayout.setScrimColor(ContextCompat.getColor(BanList.this, android.R.color.transparent));
-        //Programtically set the hamburger menu to white instead of black
+        //Programmatically set the hamburger menu to white instead of black
         mToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.white));
         mToggle.syncState();
 
@@ -87,13 +84,13 @@ public class BanList extends AppCompatActivity {
         searchView.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
             @Override
             public void onSearchViewShown() {
-                //Leave empty, we want to not touch the list that is shown when its pressed
+                //Leave empty, we don't want to alter the list when pressed
 
             }
 
             @Override
             public void onSearchViewClosed() {
-                //If search view is closed, listview will restore itself to default
+                //If search view is closed, list view will restore itself to default (O.G. Ban list Items)
                 adapter = new BanlistAdapter(listItems,getApplicationContext());
                 recyclerView.setAdapter(adapter);
 
@@ -103,7 +100,7 @@ public class BanList extends AppCompatActivity {
         searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                //Forceful Way of handling Keyboard Token, as of yet Android API sucks for doing this
+                //Forceful Way of handling Keyboard Token, as of yet Androids Library does not have a method
                 View view = getCurrentFocus();
                 InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
@@ -116,19 +113,24 @@ public class BanList extends AppCompatActivity {
                 if(newText != null && !newText.isEmpty()){
                   List<ListItem> queryListFound = new ArrayList<>();
                   for(ListItem items:listItems){
-                      //Search Engine Head Text must be converted to Lowercase, else it will search only for specefic Lower or uppercase
+                      //Search Engine Head Text must be converted to Lowercase,
+                      //else it will search only for specific Lower or uppercase
+
+                      /*codeword to see what recently has been altered in the Banlist*/
                       if(newText.equalsIgnoreCase("update") && !items.getRemark().isEmpty()){
                           queryListFound.add(items);
                       }
+                      /*Default Base Case*/
                       else if(items.getHead().toLowerCase().contains(newText)){
                           queryListFound.add(items);
                       }
 
-
+                      //Add current items into the adapter
                       adapter = new BanlistAdapter(queryListFound,getApplicationContext());
-                      recyclerView.setAdapter(adapter);
+                      recyclerView.setAdapter(adapter); //Propagate List with Adapter Items
                   }
                 }
+                /*Base Case If User does not touch Search Bar*/
                 else{
                     adapter = new BanlistAdapter(listItems,getApplicationContext());
                     recyclerView.setAdapter(adapter);
@@ -213,7 +215,8 @@ public class BanList extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
                         //If an error would happen, a toast will state the error (Saving App From Crashing)
                         progressDialog.dismiss();
-                        Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(),error.getMessage(),Toast.LENGTH_LONG).show();
+                        /*StyleableToast.makeText(getApplicationContext(),error.getMessage(),R.style.Lost_Toast).show();*/
                     }
                 });
 
@@ -223,10 +226,7 @@ public class BanList extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(mToggle.onOptionsItemSelected(item)){
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+        return mToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
     }
 
     @Override

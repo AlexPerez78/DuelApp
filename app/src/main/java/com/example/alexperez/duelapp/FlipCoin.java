@@ -1,17 +1,10 @@
 package com.example.alexperez.duelapp;
 
 import android.app.Activity;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
-import android.view.View;
 import android.view.WindowManager;
-import android.widget.ImageView;
-import android.widget.Toast;
-
-import java.util.HashMap;
-import java.util.Random;
 
 public class FlipCoin extends Activity {
 
