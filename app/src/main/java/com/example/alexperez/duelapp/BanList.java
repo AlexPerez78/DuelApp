@@ -36,7 +36,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BanList extends AppCompatActivity {
-    private static final String URL_DATA = "https://api.jsonbin.io/b/5a2233aa3cc482364837a0ca/3";
+    /*Production: https://cdn.rawgit.com/AlexPerez78/d7307cf43493f06f17420b35e8d8ad73/raw/ba033506db1e6aca1e6d851df9c7be8c6d0547ed/banlist_JSON.json
+    * Development: https://rawgit.com/AlexPerez78/d7307cf43493f06f17420b35e8d8ad73/raw/ba033506db1e6aca1e6d851df9c7be8c6d0547ed/banlist_JSON.json
+    * OG: https://api.jsonbin.io/b/5a2233aa3cc482364837a0ca/4
+    * */
+    private static final String URL_DATA = "https://rawgit.com/AlexPerez78/d7307cf43493f06f17420b35e8d8ad73/raw/ba033506db1e6aca1e6d851df9c7be8c6d0547ed/banlist_JSON.json";
 
     private ActionBarDrawerToggle mToggle;
 
