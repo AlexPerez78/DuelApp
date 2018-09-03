@@ -17,17 +17,19 @@ Every Activity is set to the Players of the card game in which these can be usef
 .Tournament Gen: Playing at home with friends? Add them to this Duel Generator to see who will fight against who
 .Settings: Configure themes, and other stuff to come to fruition.
 
-Phones Tested as of 11/20/17
+Phones Tested as of 3/20/18
 
-
+  .Google Pixel 2
+  
   .Google Pixel + Xl
 
   .Galaxy S7 + S8
 
   .Galaxy Prime
+  
+  .Razer Phone
 
 
 OS tested as of 11/20/17
 
-
-  5.0.0 - 7.1.1
+  5.0.0 - 9.0
