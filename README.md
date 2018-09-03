@@ -30,6 +30,6 @@ Phones Tested as of 3/20/18
   .Razer Phone
 
 
-OS tested as of 11/20/17
+OS tested as of 8/28/18
 
   5.0.0 - 9.0
